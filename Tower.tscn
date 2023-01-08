@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Tower.gd" type="Script" id=1]
+[ext_resource path="res://LightGradient.tres" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=17]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=18]
+light_mode = 2
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0.129338, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=14]
+gradient = SubResource( 13 )
+width = 16
+height = 16
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="OccluderPolygon2D" id=16]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+
+[node name="Tower" type="StaticBody2D"]
+material = SubResource( 17 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 18 )
+texture = SubResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 16 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 0.12
+energy = 0.56
+
+[node name="TowerLaser" type="Line2D" parent="."]
+default_color = Color( 0.4, 0.501961, 1, 1 )
